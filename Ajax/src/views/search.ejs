@@ -1,0 +1,62 @@
+  <html>
+
+  <head>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+  </head>
+
+  <body>
+
+  <h1>Users</h1>
+
+  <!-- <p>First Name:</p> -->
+  <div class="center">
+  <br>
+  <form>
+  <input type = "text" placeholder="name" id="l" action="/search" method="POST">
+<div id="matchingresult" ></div>
+</form>
+</div>
+
+<script type="text/javascript">
+
+  // $(document).ready(function()
+  $('#l').keyup(() => {
+    let value = $("#l").val()
+    console.log('test ' +value)
+    $.post("/search", {name: value}).done(function (res){
+      console.log(res);
+      $("#matchingresult").html(res)
+        for (const ele in res){
+          $('#matchingresult').append(`<ul>${res[ele].firstname} ${res[ele].lastname} ${res[ele].email}</ul>`)
+          console.log(res);
+          }
+        })
+      })
+
+
+
+
+$.ajax({
+    type: 'POST',
+    url: $(form).attr('action'),
+    //or "/search"
+    data: {name: value} ,
+    datatype: "json",
+    success: function(res) {
+      const results = res.reduce(function(accumulator, value){
+        return accumulator + "<div>" + value + "</div>"
+      },
+  catch(err){
+    console.error(err)
+  }   )
+    }
+)
+  })
+
+
+
+//5 regels bandwidth optimization
+</script>
+</body>
+</html>
